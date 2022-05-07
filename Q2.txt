@@ -1,0 +1,47 @@
+package new_demo;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class examp1 {
+	public static void main(String[] args) throws InterruptedException 
+	{
+	System.setProperty("webdriver.chrome.driver", "E:\\testing\\selenium\\chromedriver.exe");
+	WebDriver driver = new ChromeDriver();
+//	open browser
+	driver.get("http://jt-dev.azurewebsites.net/#/SignUp ");
+	 WebElement wb = driver.findElement(By.xpath("(//i[@class='caret pull-right'])[2]"));
+	 Actions act = new Actions(driver);
+	 act.moveToElement(wb).perform();
+	 driver.findElement(By.xpath("(//span[@class='ng-binding ng-scope'])[2]")).click();
+	 driver.findElement(By.xpath("(//div[@ng-bind-html='language'])[1]")).click();
+	 driver.manage().window().maximize();
+//	 Enter the name 
+	 driver.findElement(By.xpath("//input[@id='name']")).sendKeys("abc");
+//	 Enter organization
+	 driver.findElement(By.xpath("//input[@id='orgName']")).sendKeys("xyz");
+//	 enter email id
+	 driver.findElement(By.xpath("//input[@type='email']")).sendKeys("urmilavjagtap@gmail.com");
+	 Thread.sleep(2000);
+//	 click on checkbox
+	 driver.findElement(By.xpath("//label[@class='ui-checkbox']//span[text()='I agree to the']")).click();
+//	 click on get started
+	 driver.findElement(By.xpath("//button[text()='Get Started']")).click();
+	 Thread.sleep(3000);
+//	 validation of text field
+	  boolean result = driver.findElement(By.xpath("//*[@id='content']/div/div[3]/div/section/div[1]/form/div/span")).isDisplayed();
+	  System.out.println(result);
+	if(result==true) 
+	{
+	System.out.println("text box is displayed");	
+	}
+	else
+	{System.out.println("not displayed");
+	}
+	}
+	
+
+}
